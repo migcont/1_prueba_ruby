@@ -17,7 +17,7 @@ def create_data_structure(file)
 end
 
 def calculate_average(array_of_grades)
-  #pendiente transformar los 0
+  #pendiente transformar los 0 a 1 7 antes eran una A
   array_of_grades.inject(0){ |sum,val| sum + val } / array_of_grades.length
 end
 
@@ -36,22 +36,12 @@ end
 
 #opcion 2
 def inasistencias
-
-
-
-
   #line = data.map { |e| e.split(',') }
   #line.select { |e| e.include? "P" }
   #puts line
 end
   #new_array = data.map { |e| e.include? 'A' }
-
-
-
-
   #puts new_array
-
-
 
 #opcion3
 def aprobados (data)
