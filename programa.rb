@@ -1,15 +1,15 @@
 
 def create_data_structure(file)
-  array_of_hashes = []
+  array_of_hashes = [] #array nuevo
   #manejo de archivo
   file = File.open(file, 'r')
   data = file.readlines.map(&:chomp)
   file.close
-  data = data.map { |e| e.split(', ') }
+  data = data.map { |e| e.split(', ') } # separar los datos
   data.each do |line|
     student = {
-      name: line.shift,
-      grades: line.map(&:to_i)
+      name: line.shift, #asignar los nombres y las variables
+      grades: line.map(&:to_i) #el resto son las notas
     }
     array_of_hashes << student
   end
@@ -18,12 +18,17 @@ end
 
 def calculate_average(array_of_grades)
   #pendiente transformar los 0 a 1 7 antes eran una A
-  array_of_grades.inject(0){ |sum,val| sum + val } / array_of_grades.length
+  array_of_grades.inject(0) { |sum, val| sum + val } / array_of_grades.length
+  #puts array_of_grades
+end
+
+def calculate_assists(array_of_grades)
+  array_of_grades.map { |e| e.include? 'A' }
 end
 
 #manejo de datos
 #opcion 1
-def promedio
+def promedio #average
   array_of_hashes = create_data_structure('datos.csv')
   # hacer el archivo
   array_of_hashes.each do |student_hash|
@@ -31,20 +36,23 @@ def promedio
     name = student_hash[:name]
     file.puts "#{name}, #{average}"
   end
-
 end
 
-#opcion 2
-def inasistencias
-  #line = data.map { |e| e.split(',') }
-  #line.select { |e| e.include? "P" }
-  #puts line
-end
-  #new_array = data.map { |e| e.include? 'A' }
-  #puts new_array
+#opcion2
+  def inasistencias
+    array_of_hashes = create_data_structure('datos.csv')
+    array_of_hashes.each_index do |e| #new_array = nombres.select {|e| e.include? "P"}
+    name = array_of_hashes[e][:name]
+    a = (array_of_hashes[e][:grades]).count("A")
+    puts "#{name} tiene: #{a} ausencias."
+    end
+  end
+
+#new_array = data.map { |e| e.include? 'A' }
+#puts new_array
 
 #opcion3
-def aprobados (data)
+def aprobados
 
 end
 
